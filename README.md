@@ -1,0 +1,1 @@
+# Qt-scan-document-read-barcode
