@@ -22,20 +22,7 @@ win.setWindowTitle('Dynamic Web TWAIN and Dynamsoft Barcode Reader')
 layout = QVBoxLayout()
 win.setLayout(layout)
 
-class WebView(QWebEngineView):
-    def __init__(self):
-        QWebEngineView.__init__(self)
-
-        # Load web page and resource files to QWebEngineView
-        file_path = os.path.abspath(os.path.join(
-            os.path.dirname(__file__), "index.html"))
-        local_url = QUrl.fromLocalFile(file_path)
-        self.load(local_url)
-
-        self.channel = QWebChannel(self.page())
-        self.channel.registerObject('backend', self)
-        self.page().setWebChannel(self.channel)
-
+class Backend(QObject):
     @pyqtSlot(str)
     def onDataReady(self, base64img):
         imgdata = base64.b64decode(base64img)
@@ -54,6 +41,22 @@ class WebView(QWebEngineView):
                 text_area.setText(out)
         except BarcodeReaderError as bre:
             print(bre)
+
+class WebView(QWebEngineView):
+    def __init__(self):
+        QWebEngineView.__init__(self)
+
+        # Load web page and resource files to QWebEngineView
+        file_path = os.path.abspath(os.path.join(
+            os.path.dirname(__file__), "index.html"))
+        local_url = QUrl.fromLocalFile(file_path)
+        self.load(local_url)
+        self.backend = Backend(self)
+        self.channel = QWebChannel(self.page())
+        self.channel.registerObject('backend', self.backend)
+        self.page().setWebChannel(self.channel)
+
+    
 
 # Initialize widgets
 view = WebView()
