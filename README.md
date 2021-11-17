@@ -40,3 +40,6 @@ pip install -r requirements.txt
 
 ## Windows Virtual Scanner
 If you don't have a physical scanner, you can follow [https://github.com/yushulx/windows-virtual-scanner](https://github.com/yushulx/windows-virtual-scanner) to build and install a virtual scanner, which allows you to scan custom image set.
+
+## Blog
+[Building a Document Scanning and Barcode Recognition Application with Qt Python](https://www.dynamsoft.com/codepool/qt-document-scanning-barcode-recognition.html)
