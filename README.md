@@ -35,6 +35,8 @@ pip install -r requirements.txt
     ```bash
     python app.py
     ```  
+    
+    ![Qt application: document scanning and barcode recognition](https://www.dynamsoft.com/blog/wp-content/uploads/2021/11/qt-scan-document-read-barcode.jpg)
 
 ## Windows Virtual Scanner
 If you don't have a physical scanner, you can follow [https://github.com/yushulx/windows-virtual-scanner](https://github.com/yushulx/windows-virtual-scanner) to build and install a virtual scanner, which allows you to scan custom image set.
